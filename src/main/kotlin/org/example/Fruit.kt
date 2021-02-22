@@ -47,6 +47,12 @@ class Fruit {
             total = round(total * 100.0) / 100.0
             return (total)
         }
+
+        fun myOrderCheckout(order: Order): Double {
+            val total = Fruit.myCheckout(order.order)
+            order.status = "submitted"
+            return total
+        }
     }
 
 

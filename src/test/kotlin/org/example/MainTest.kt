@@ -3,8 +3,22 @@ package org.example
 import org.junit.Test
 import kotlin.test.assertEquals
 import org.example.main
-
+import org.example.Order
 class MainTest {
+
+    @Test
+    fun `test event service`(){
+        val order = Order("Apple, Apple, Apple, Orange")
+        order.onStatusChanged = {oldValue, newValue ->
+            println("Order: ${order.order} | Status now set to: ${order.status} | with time: ${order.time}")
+        }
+
+        val total = Fruit.myOrderCheckout(order)
+        val expectedTotal = 1.45
+
+        assertEquals(total, expectedTotal)
+
+    }
 
     @Test
     fun `example list case`() {
