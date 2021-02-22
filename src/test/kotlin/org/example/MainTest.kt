@@ -7,6 +7,34 @@ import org.example.Order
 class MainTest {
 
     @Test
+    fun `test event service running out of apples`(){
+        val order = Order("Apple, Apple, Apple, Orange, Apple, Apple, Apple")
+        order.onStatusChanged = {oldValue, newValue ->
+            println("Order: ${order.order} | Status now set to: ${order.status} | with time: ${order.time}")
+        }
+
+        val total = Fruit.myOrderCheckout(order)
+        val expectedTotal = -1.0
+
+        assertEquals(total, expectedTotal)
+
+    }
+
+    @Test
+    fun `test event service running out of oranges`(){
+        val order = Order("Apple, Orange, Orange, Orange, Orange, Orange, Orange")
+        order.onStatusChanged = {oldValue, newValue ->
+            println("Order: ${order.order} | Status now set to: ${order.status} | with time: ${order.time}")
+        }
+
+        val total = Fruit.myOrderCheckout(order)
+        val expectedTotal = -1.0
+
+        assertEquals(total, expectedTotal)
+
+    }
+
+    @Test
     fun `test event service`(){
         val order = Order("Apple, Apple, Apple, Orange")
         order.onStatusChanged = {oldValue, newValue ->
