@@ -1,5 +1,7 @@
 package org.example
 
+import kotlin.math.round
+
 class Fruit {
 
      var name: String = "";
@@ -26,14 +28,23 @@ class Fruit {
             val fruitList = stringInput.split(", ")
 
             var total = 0.0;
+            var appleCount = 0
+            var orangeCount = 0
             for (fruit in fruitList) {
                 if (fruit == "Apple") {
-                    total += apple.price
+                    appleCount++
+                    if(appleCount%2 == 1) {
+                        total += apple.price
+                    }
                 }
                 if (fruit == "Orange") {
-                    total += orange.price
+                    orangeCount++
+                    if(orangeCount%3 != 0) {
+                        total += orange.price
+                    }
                 }
             }
+            total = round(total * 100.0) / 100.0
             return (total)
         }
     }

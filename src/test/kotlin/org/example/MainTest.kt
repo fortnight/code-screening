@@ -8,10 +8,20 @@ class MainTest {
 
     @Test
     fun `example list case`() {
-        val stringInput = "Apple, Apple, Orange, Apple"
+        val stringInput = "Apple, Apple, Orange, Apple, Orange"
 
         val total = Fruit.myCheckout(stringInput)
-        val expectedTotal = 2.05
+        val expectedTotal = 1.70
+
+        assertEquals(expectedTotal, total)
+    }
+
+    @Test
+    fun `bulk order to test discounts`() {
+        val stringInput = "Apple, Orange, Orange, Orange, Apple, Orange, Apple"
+
+        val total = Fruit.myCheckout(stringInput)
+        val expectedTotal = 1.95
 
         assertEquals(expectedTotal, total)
     }
